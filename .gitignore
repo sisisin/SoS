@@ -11,3 +11,7 @@ npm-debug.log
 
 # res
 resources/signing
+
+# prj
+_tmp/
+www/js/
