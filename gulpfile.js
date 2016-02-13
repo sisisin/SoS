@@ -15,7 +15,7 @@ let watching = false;
 gulp.task('enable-watch-mode', () => watching = true);
 
 gulp.task('browserify', watchify((watchify) => {
-  return gulp.src('_tmp/index.js')
+  return gulp.src('_tmp/storage.js')
     .pipe(watchify({ watch: watching }))
     .pipe(gulp.dest('www/js'));
 }));

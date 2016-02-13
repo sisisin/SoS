@@ -1,8 +1,25 @@
-import StoneSkin from 'stone-skin/with-tv4';
-import 'babel-polyfill';
+'use strict';
 
-export class ServiceStore extends StoneSkin.IndexedDb {
-  constructor(){
+import 'babel-polyfill';
+import StoneSkin from 'stone-skin/with-tv4'
+const app = {
+  initialize: function () {
+    this.bindEvents();
+  },
+  bindEvents: function () {
+    document.addEventListener('deviceready', this.onDeviceReady, false);
+  },
+  onDeviceReady: function () {
+    app.receivedEvent('deviceready');
+  },
+  receivedEvent: function (id) {
+  }
+}
+
+app.initialize();
+
+class ServiceStore extends StoneSkin.IndexedDb {
+  constructor() {
     super();
     this.storeName = 'Service';
     this.schema = {
