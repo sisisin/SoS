@@ -1,7 +1,8 @@
 'use strict';
 
 import 'babel-polyfill';
-import StoneSkin from 'stone-skin/with-tv4'
+import StoneSkin from 'stone-skin/with-tv4';
+
 const app = {
   initialize: function () {
     this.bindEvents();
@@ -9,14 +10,19 @@ const app = {
   bindEvents: function () {
     document.addEventListener('deviceready', this.onDeviceReady, false);
   },
-  onDeviceReady: function () {
+  onDeviceReady: async function () {
+    let store = new ServiceStore();
+    await store.ready;
+    await store.save([
+      {_id: 0, title: 'hoge', user: 'sisisin', pass: 'hogepass', mail: 'ho'}
+      , {_id: 1, title: 'fuga', user: 'sisisin', pass: 'fugapass', mail: 'fu'}
+    ]);
+
     app.receivedEvent('deviceready');
   },
   receivedEvent: function (id) {
   }
 }
-
-app.initialize();
 
 class ServiceStore extends StoneSkin.IndexedDb {
   constructor() {
@@ -32,3 +38,5 @@ class ServiceStore extends StoneSkin.IndexedDb {
     }
   }
 }
+
+app.initialize();
