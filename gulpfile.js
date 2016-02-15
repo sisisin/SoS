@@ -4,10 +4,10 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const watchify = require('gulp-watchify');
 
-const jsPath = ['src/js/**.js'];
+const jsPath = ['src/**/**.js', 'src/component/**.jsx'];
 gulp.task('build', ['build:js']);
 gulp.task('build:js'
-  , () => gulp.src(jsPath, { base: 'src/js' })
+  , () => gulp.src(jsPath, { base: 'src' })
     .pipe(babel())
     .pipe(gulp.dest('_tmp')));
 
